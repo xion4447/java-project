@@ -10,6 +10,6 @@ node('linux') {
 		sh 'ant -f build.xml -v'   
 	}   
 	stage('Deploy') {    
-		sh 'aws s3 cp dist/rectangle-${env.BUILD_NUMBER}.jar s3://xion4447/'   
+		sh 'aws s3 cp dist/rectangle-${env.BUILD_NUMBER}.jar s3://xion4447/rectangle.jar'   
 	}
 }
