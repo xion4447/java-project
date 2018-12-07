@@ -13,6 +13,8 @@ node('linux') {
 		sh "aws s3 cp dist/rectangle-${env.BUILD_NUMBER}.jar s3://xion4447/"   
 	}
 	stage('Report') {    
-		sh "aws cloudformation describe-stack-resources --region us-east-1 --stack-name jenkins"   
+		withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', accessKeyVariable: 'AWS_ACCESS_KEY_ID', credentialsId: '34e11b65-6b7a-4f79-a037-da9510da872c', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY']]) {
+		    sh "aws cloudformation describe-stack-resources --region us-east-1 --stack-name jenkins"  
+		}
 	}
 }
